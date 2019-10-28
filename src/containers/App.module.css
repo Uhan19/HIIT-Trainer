@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
+
+.App {
+  font-family: "Orbitron", "sans-serif";
+}
+
+.App-logo {
+  height: 40px;
+  color: white;
+  margin: 10px 10px;
+}
+
+.App-logo:hover {
+  animation: App-logo-spin infinite 20s linear;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App button {
+  background-color: #E2AC0B;
+  color: white;
+  font: inherit;
+  border-radius: 10px;
+  padding: 8px;
+  cursor: pointer;
+  margin: 5px 5px;
+}
+
+.App button:hover {
+  background-color: #FFD863;
+  color: black;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.footer {
+  text-align: center;
+	position: fixed;
+  bottom: 5px;
+  font-size: 12px;
+  color: grey;
+	width: 100%
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  color: white;
+  background-color: #4B84AF;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.header-text {
+  margin: 10px 0px;
+  padding-top: 10px;
+  font-size: 25px;
+}
