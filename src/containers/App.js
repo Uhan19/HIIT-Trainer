@@ -7,7 +7,7 @@ import classes from './App.module.css';
 
 const App = () => {
 
-  const [ time, setTime ] = useState({ time: 0 });
+  const [ time, setTime ] = useState({ time: "00:00" });
 
 	const [ cycle, setCycle ] = useState({ cycle: 1})
   
@@ -18,7 +18,7 @@ const App = () => {
         time={time.time}
         setTime={setTime}
         cycle={cycle.cycle}
-        setCycle={setCycle}
+				setCycle={setCycle}
       />
       <Footer />
     </div>
