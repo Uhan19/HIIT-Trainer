@@ -7,3 +7,7 @@ export const cycle6 = "Leg Flutters (Scissors)";
 export const cycle7 = "Bicycles";
 export const cycle8 = "In n Out (Plank)";
 export const cycle9 = "Plank";
+
+// cycle duration
+export const workout = 10;
+export const rest = 15; 
