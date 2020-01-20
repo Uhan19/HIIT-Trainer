@@ -11,5 +11,5 @@ export const workoutList = [
 ]
 // cycle duration
 export const restMsg = "Rest"
-export const workout = 10;
-export const rest = 5;
+export const workout = 46;
+export const rest = 16;
