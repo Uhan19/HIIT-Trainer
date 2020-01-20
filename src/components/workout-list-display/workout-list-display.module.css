@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+.list-container {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px 20px;
+  width: 40%;
+}
+
+.list-item {
+  text-align: left;
+  padding: 5px 0px;
+}
+
+@media only screen and (max-width: 768px) {
+  .list-container {
+    margin: auto;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .list-container {
+    margin: auto;
+    width: 70%;
+  }
+}

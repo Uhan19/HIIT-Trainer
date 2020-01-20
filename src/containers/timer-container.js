@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import classes from "./timer-container.module.css";
 import HIITMessage from "../components/hiit-message/hiit-message";
 import Timer from "../components/timer/timer";
+import WorkoutListDispay from "../components/workout-list-display/workout-list-display";
 import { DateTime } from "luxon";
 import { workout, workoutList } from "../utils/enum";
 
@@ -67,9 +68,12 @@ const TimerWrapper = props => {
 		setStartTimes([now]);
 		setStopTimes([]);
 	}
+
+	const timerCSSClass = isRest ? classes.timerGreen : classes.timerRed;
 	
 	return (
 		<div className={classes.timer}>
+			<WorkoutListDispay/>
 			<button
 				onClick={() => handleStartPause()}
 			>
@@ -80,7 +84,7 @@ const TimerWrapper = props => {
 			>
 				Reset
 			</button>
-			<div className={timerClass.class}>
+			<div className={timerCSSClass}>
 				<Timer 
 					start={start}
 					isRest={isRest}
