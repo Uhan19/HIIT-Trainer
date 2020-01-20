@@ -3,12 +3,15 @@ import classes from "./timer-container.module.css";
 import HIITMessage from "../components/hiit-message/hiit-message";
 import Timer from "../components/timer/timer";
 import { DateTime } from "luxon";
+import { workout, workoutList } from "../utils/enum";
 
 const TimerWrapper = props => {
 
 	const [ timerClass, setTimerClass ] = useState({ class: classes.timerRed });
 
-	const [ workoutCycle, setWorkoutCycle ] = useState({ cycle: 1 })
+	const [ workoutCycle, setWorkoutCycle ] = useState(0);
+
+	const [ isRest, setIsRest] = useState(false);
 
 	const [ isRunning, setIsRunning ] = useState(false);
 
@@ -16,11 +19,8 @@ const TimerWrapper = props => {
 
 	const [ stopTimes, setStopTimes ] = useState([]);
 
-	// useEffect(() => {
-		
-	// })
+	const [start, setStart] = useState();
 
-  let start = DateTime.local();
 	let elapsedTime = null;
 
 	
@@ -32,24 +32,40 @@ const TimerWrapper = props => {
 				elapsedTime = stopTimes[0].diff(startTimes[0])
     }
 	}
-	
-	if (workoutCycle === 2) {
-		elapsedTime = null;
-	}
-	console.log(elapsedTime)
 
   const handleStartPause = () => {
 		if (isRunning) {
       setIsRunning(false);
       setStopTimes([...stopTimes, DateTime.local()]);
 		} else {
+			const now = DateTime.local()
+			setStart(now);
       setIsRunning(true);
-      setStartTimes([...startTimes, DateTime.local()]);
+      setStartTimes([...startTimes, now]);
 		}
 	}
 
 	const handleReset = () => {
+		// if the arg is true, current page will load without the browser cache
 		window.location.reload(false); 
+	}
+
+	const handleClear = () => {
+		const now = DateTime.local();
+		let cycle = workoutCycle;
+		if (workoutCycle === workoutList.length) {
+			setIsRunning(false);
+		}
+		if (isRest) {
+			setIsRest(false);
+		} else {
+			cycle++;
+			setWorkoutCycle(cycle);
+			setIsRest(true);
+		}
+		setStart(now);
+		setStartTimes([now]);
+		setStopTimes([]);
 	}
 	
 	return (
@@ -67,14 +83,15 @@ const TimerWrapper = props => {
 			<div className={timerClass.class}>
 				<Timer 
 					start={start}
-					setWorkoutCycle={setWorkoutCycle}
+					isRest={isRest}
 					isRunning={isRunning}
 					startTimes={startTimes}
 					stopTimes={stopTimes}
 					elapsedTime={elapsedTime}
+					clear={() => handleClear()}
 				/>
 			</div>
-			{/* <HIITMessage cycle={cycle} /> */}
+			<HIITMessage cycle={workoutCycle} isRest={isRest} />
 		</div>
 	)
 }
