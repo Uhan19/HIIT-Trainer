@@ -1,21 +1,21 @@
-import React from "react";
+import React from "react"
 import { useCounter } from "./counter";
-import { workout } from "../../utils/enum";
+import { Duration } from "luxon";
+import { workout, rest } from "../../utils/enum";
 
 const timer = props => {
 	const {
-		workoutCycle,
-		setWorkoutCycle,
 		isRunning,
 		start,
-		elapsedTime
+		elapsedTime,
+		clear,
+		isRest
 	} = props;
 
-
-	let formattedTime = "00:00"
+	let formattedTime = "0";
 
 	if (elapsedTime) {
-		formattedTime = elapsedTime.toFormat("mm:ss");
+		formattedTime = Math.round(elapsedTime.as("seconds"));
 	}
 
 	if (isRunning) {
@@ -26,16 +26,16 @@ const timer = props => {
 			diff = timeNow.diff(start).plus(elapsedTime);
 		}
 
-		console.log(Math.round(diff.as("seconds")))
+		formattedTime = Math.round(diff.as("seconds"));
 
-		if (Math.round(diff.as("seconds")) === workout) {
-			const cycle = {...workoutCycle}
-			cycle.cycle++;
-			setWorkoutCycle(cycle);
+		if (Math.round(diff.as("seconds")) === rest && isRest) {
+			clear();
 		}
-
-		formattedTime = diff.toFormat("mm:ss");
+		if (Math.round(diff.as("seconds"))=== workout && !isRest) {
+			clear()
+		}
 	}
+
 
 	return (
 		<div>

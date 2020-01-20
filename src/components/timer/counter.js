@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { DateTime } from "luxon";
 
-export const useCounter = (refresh = 100, isRunning) => {
+export const useCounter = (refresh = 100, isRunning, clear) => {
 	const [ now, setNow ] = useState(getTime());
 	
 	useEffect(() => {
@@ -12,6 +12,9 @@ export const useCounter = (refresh = 100, isRunning) => {
 				refresh
 			)
 		};
+		if (clear) {
+			clearInterval(interval)
+		}
 		return () => clearInterval(interval);
 	}, [isRunning, refresh, setInterval, clearInterval, getTime, setNow])
 
